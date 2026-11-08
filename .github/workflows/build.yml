@@ -9,9 +9,9 @@ jobs:
       - name: Unpack files
         run: |
           for f in index package capacitor.config; do 7z x -y "$f.7z"; done
-          ls -la
           mkdir -p www
           cp index.html www/
+          sed -i 's#</style>#[hidden]{display:none!important}</style>#' www/index.html
       - uses: actions/setup-node@v4
         with:
           node-version: 20
