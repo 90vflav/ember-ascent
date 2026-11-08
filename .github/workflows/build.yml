@@ -12,6 +12,10 @@ jobs:
           mkdir -p www
           cp index.html www/
           sed -i 's#</style>#[hidden]{display:none!important}</style>#' www/index.html
+          sed -i 's#s\.innerHTML=html;s\.hidden=false;#s.innerHTML=html;s.hidden=false;s.style.display="flex";#' www/index.html
+          sed -i "s#function hideScreen(){\$('screen').hidden=true;}#function hideScreen(){var s=\$('screen');s.hidden=true;s.style.display='none';}#" www/index.html
+          sed -i 's#A mountain in eight rooms#v2 - A mountain in eight rooms#' www/index.html
+          grep -c "v2 - A mountain" www/index.html
       - uses: actions/setup-node@v4
         with:
           node-version: 20
